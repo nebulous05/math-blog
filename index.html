@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ben's Math Blog</title>
+  <title>Ben’s Math Blog</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Markdown parser -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- MathJax for LaTeX -->
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
@@ -17,17 +21,21 @@
 
 <body>
   <header>
-    <h1>Ben's Math Blog</h1>
-    <p>Proofs, problems, and ideas.</p>
+    <h1>Ben’s Math Blog</h1>
+    <p>Proofs, problems, and mathematical musings.</p>
   </header>
 
-  <main>
-    <nav id="post-list"></nav>
-    <article id="post-content"></article>
+  <section id="filter-bar">
+    <h3>Filter by Topic</h3>
+    <div id="tag-filters"></div>
+  </section>
+
+  <main id="posts-container">
+    <!-- Posts dynamically inserted here -->
   </main>
 
   <footer>
-    <p>© 2025 Ben — Made with ❤️ and LaTeX</p>
+    <p>© 2025 Ben — Made with ❤️, MathJax, and Markdown</p>
   </footer>
 
   <script src="script.js"></script>
