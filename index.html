@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ben's Math Blog</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
+</head>
+
+<body>
+  <header>
+    <h1>Ben's Math Blog</h1>
+    <p>Proofs, problems, and ideas.</p>
+  </header>
+
+  <main>
+    <nav id="post-list"></nav>
+    <article id="post-content"></article>
+  </main>
+
+  <footer>
+    <p>© 2025 Ben — Made with ❤️ and LaTeX</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
