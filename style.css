@@ -132,3 +132,8 @@ code {
   #posts-container { padding: 0 1em; }
   .post { padding: 1.5em; }
 }
+
+mjx-container[jax="CHTML"] {
+  color: #f8f8f8 !important;
+  font-size: 1.05em;
+}

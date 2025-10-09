@@ -4,28 +4,26 @@ document.addEventListener("DOMContentLoaded", () => {
   const posts = [
     { 
       title: "Example Proof: Sum of First n Integers", 
-      file: "example-post.md",
+      file: "example-proof.tex",
       tags: ["Algebra", "Induction"]
     },
     {
       title: "A Neat Number Theory Lemma",
-      file: "number-theory.md",
+      file: "number-theory.tex",
       tags: ["Number Theory"]
     },
     {
       title: "Combinatorial Argument Example",
-      file: "combinatorics.md",
+      file: "combinatorics.tex",
       tags: ["Combinatorics"]
     }
   ];
 
-  // Extract all unique tags
   const uniqueTags = [...new Set(posts.flatMap(p => p.tags))];
-
-  // Create filter checkboxes
   const tagContainer = document.getElementById("tag-filters");
   const postContainer = document.getElementById("posts-container");
 
+  // Build tag checkboxes
   uniqueTags.forEach(tag => {
     const label = document.createElement("label");
     label.classList.add("tag-option");
@@ -34,23 +32,22 @@ document.addEventListener("DOMContentLoaded", () => {
     checkbox.value = tag;
     checkbox.onchange = updatePosts;
     label.appendChild(checkbox);
-    label.appendChild(document.createTextNode(tag));
+    label.appendChild(document.createTextNode(" " + tag));
     tagContainer.appendChild(label);
   });
 
-  // Load and display posts
+  // Load and render posts
   async function updatePosts() {
     const selected = Array.from(document.querySelectorAll('#tag-filters input:checked')).map(cb => cb.value);
     const filtered = selected.length === 0
       ? posts
       : posts.filter(p => selected.every(tag => p.tags.includes(tag)));
 
-    // Clear and repopulate
     postContainer.innerHTML = "";
+
     for (const post of filtered) {
       const res = await fetch(`posts/${post.file}`);
-      const text = await res.text();
-      const html = marked.parse(text);
+      const tex = await res.text();
 
       const postDiv = document.createElement("div");
       postDiv.className = "post";
@@ -59,15 +56,15 @@ document.addEventListener("DOMContentLoaded", () => {
       postDiv.innerHTML = `
         <h2>${post.title}</h2>
         <div class="tags">${tagHTML}</div>
-        <div class="content">${html}</div>
+        <div class="content">${tex}</div>
       `;
 
       postContainer.appendChild(postDiv);
     }
 
+    // Let MathJax render all LaTeX code
     if (window.MathJax) MathJax.typesetPromise();
   }
 
-  // Load all posts on page load
   updatePosts();
 });
